@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+<body class="bg-dark">
+    <div class="container-sm py-3 bg-secondary">
+        <h1 class="text-center"><span class="text-muted badge bg-light">User Dashboard</span></h1><br>
+        <div class="text-sm-center">
+            <a class="mx-2 btn btn-sm-lg btn-outline-light" href="/user_dashboard/{{user.id}}">Home</a>
+            <a class="mx-2 btn btn-sm-lg btn-outline-light" href="/user_bookings/{{user.id}}">My Bookings</a>
+            <a class="mx-2 btn btn-sm-lg btn-outline-light" href="/search/{{user.id}}">Search</a>
+            <a class="mx-2 btn btn-sm-lg btn-outline-light" href="/">Log out</a>
+        </div>
+        {% for venue in venues %}
+            <div class="card my-3 container-sm border-1 rounded-3 shadow-sm">
+                <div class="card my-lg-3">
+                    <div class="card-body row w-8 m-1">
+                        <h4 class="card-title"><span class="text-capitalize text-light badge bg-secondary">{{ venue.name }}</span></h4>
+                        <h6 class="card-subtitle mb-2 text-dark"> Address: <span class="text-black-50"> {{ venue.place }},{{ venue.location }}</span></h6>
+                        <hr>
+                        <h6 class="card-subtitle mb-2 text-muted ">Shows:</h6>
+
+                        {% for show in venue.shows %}
+                            <div class="col-form-label-sm card w-1 m-sm-1" style="width: 299px;">
+                                <div class="card-body">
+                                    <h4 class="card-title text-capitalize text-dark"> Show: <span class="text-secondary"> {{ show.name }}</span>({{show.rating}})</h4>
+                                    <h6 class="text-secondary" style="font-size: 12px;">Movie Tags: {{show.tags}}</h6>
+                                    <h6 class="card-title text-capitalize text-secondary">Seats Avilable:<span>{{ show.venue.capacity }}</span></h6>
+                                    <li class="list-group-item card-text"> {{ show.timing }} - Rs.{{ show.ticket_price }}</li>
+                                    <br>
+                                    {%if venue.capacity!=0%}
+                                        <a href="/book/{{show.id}}/{{user.id}}" class="btn btn-sm btn-dark">Book Now</a>
+                                    {%else%}
+                                        <a href="#" class="btn btn-sm btn-danger" disabled>Housefull</a>
+                                    {%endif%}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

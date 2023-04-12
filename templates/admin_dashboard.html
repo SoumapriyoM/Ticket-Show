@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+<body class="bg-dark">
+    <div class="container-sm py-3 bg-secondary">
+        <h1 class="text-center"><span class="text-muted badge bg-light">Admin Dashboard</span></h1><br>
+        <div class="text-sm-center">
+            <a class="btn btn-sm-lg btn-outline-light" href="/admin_dashboard">Home</a>
+            <a class="mx-2 btn btn-sm-lg btn-outline-light" href="/admin_login">Log out</a>
+        </div>
+        {% if venues|length == 0 %}
+        <br><h4 class="card-footer text-center">No Venues created</h4>
+        {% else %}
+            {% for venue in venues %}
+                <div class="card my-3 container-sm">
+                    <div class="card my-lg-2">
+                    <div class="card-body text-sm border-1 rounded-3 shadow-sm">
+                        <a class="card-title float-lg-start" href="/venue/{{ venue.id }}"><span class="btn btn-outline-secondary text-capitalize">{{ venue.name }}</span></a>
+                        {% if venue.shows|length == 0 %}
+                            <h4 class="card-footer text-center">No shows at this venue</h4>
+                        {% else %}
+                            <table class="table table-sm table-hover table-striped ">
+                                <thead class="bg-secondary">
+                                    <tr class="text-light">
+                                        <th>ID</th>
+                                        <th>Name</th>
+                                        <th >Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="table-border">
+                                    {% for show in venue.shows %}
+                                    <tr>
+                                        <td>{{show.id}}</td>
+                                        <td ><a class="btn btn-outline-secondary"href="/show/{{ show.id }}">{{ show.name }}</a></td>
+                                        <td class="col-3">
+                                            <a class="btn btn-dark btn-sm mx-1" href="/update_show/{{ show.id }}">Update</a>
+                                            <a class="btn btn-secondary btn-sm mx-1" href="/delete_show/{{ show.id }}">Delete</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                        <a class="btn btn-sm btn-secondary mb-3 " href="/add_show/{{venue.id}}">Add show</a>
+                        <a class="btn btn-sm btn-dark mb-3" href="/update_venue/{{ venue.id }}">Update</a>
+                        <a class="btn btn-sm btn-secondary mb-3" href="/delete_venue/{{ venue.id }}">Delete</a>
+                    </div>
+                </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="text-center">
+            <a class="btn btn-dark " href="/add_venue">Add Venue</a>
+        </div>
+    </div>
+</body>
+</html>

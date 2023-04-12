@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Show</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+</head>
+<body class="bg-dark d-flex justify-content-center align-items-center p-sm-5">
+    <div class="container py-5 bg-secondary">
+    <br><h1 class="text-center"><span class="text-muted badge bg-light p-4">Book Show</span></h1>
+    <div class="text-sm-center">
+        <br>
+        <a class="btn btn-sm btn-outline-light" href="/user_dashboard/{{ user_id }}">Home</a>
+        <a class="mx-2 btn btn-sm btn-outline-light" href="/">Log out</a>
+    </div>
+        <form action="/book/{{show.id}}/{{user_id}}" method="POST" class="container-sm">
+            <div class="col-sm-6 mx-auto text-light">
+            <hr>
+            <p class="text-lg-center">Total Seats : <span>{{ venue.capacity }}</span><p>
+            <div class="mb-3">
+                <label for="seats_booked" class="form-label">Number of seats to book:</label>
+                <input type="number" name="seats_booked" id="seats_booked" class="form-control" min="1" max="{{ venue.capacity }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="ticket_price" class="form-label">Ticket Price:</label>
+                <input type="number" name="ticket_price" id="ticket_price" class="form-control" value="{{ show.ticket_price }}" disabled>
+            </div>
+            <input type="submit" value="Book" class="btn btn-dark">
+        </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
