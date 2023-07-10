@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <script src="/static/script.js"></script>
+    
+    <div class="background-slideshow">
+        <div class="image" style="background-image: url('/static/i1.jpg');"></div>
+        <div class="image" style="background-image: url('/static/i2.jpg');"></div>
+        <div class="image" style="background-image: url('/static/i3.jpg');"></div>
+    </div>
+    <div class="container ">
+      <div class="row justify-content-center">
+        <div class="header text-center py-4 col-md-6">
+            <h1 class="text-center"><span class="text-warning badge bg-light p-4">Ticket Show</span></h1>
+            <div class="text-sm-end">
+                <a href="/" class="btn btn-sm btn-outline-warning"><strong>Home</strong></a>
+            </div> 
+        <form action="/sign_up" method="post">
+            {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class="list-unstyled">
+                            {% for message in messages %}
+                                <li class="alert alert-danger">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+            <div class="mb-3">
+                <label for="username" class="form-label float-lg-start text-light">Username</label>
+                <input type="text" class="form-control" name="username" id="username"required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label float-lg-start text-light">Email</label>
+                <input type="text" class="form-control" name="email" id="email"required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label float-lg-start text-light">Password</label>
+                <input type="password" class="form-control" name="password" id="password"required>
+            </div>
+            <br>
+            <div>
+                <button type="submit" class="btn btn-light btn-lg btn-outline-warning w-100">Sign Up</button>
+            </div>
+        </form>
+        </div>
+    </div>
+</body>
+</html>

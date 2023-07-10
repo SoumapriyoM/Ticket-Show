@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Venue</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="bg-dark d-flex justify-content-center align-items-center p-sm-5">
+    
+    <div class="background-slideshow">
+        <div class="image" style="background-image: url('/static/ig.jpg');"></div>
+      </div>
+    <div class="container py-5 bg-secondary"style="background-image: url('/static/i2.jpg');">
+    <br><h1 class="text-center"><span class="text-warning badge bg-light p-4">Update Venue</span></h1>
+    <div class="text-sm-center">
+        <br>
+        <a class="btn btn-sm btn-outline-warning" href="/admin_dashboard">Home</a>
+        <a class="mx-2 btn btn-sm btn-outline-warning" href="/">Log out</a>
+    </div>
+    <form method="POST" action="/update_venue/{{ venue.id }}" class="container-sm" >
+        {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        <ul class="list-unstyled">
+                            {% for message in messages %}
+                                <li class="alert alert-danger">{{ message }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                {% endwith %}
+        <div class="col-sm-6 mx-auto text-warning fw-bold ">
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" id="name" name="name" value="{{ venue.name }}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="place" class="form-label">Place</label>
+                <input type="text" id="place" name="place" value="{{ venue.place }}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="location" class="form-label">Location</label>
+                <input type="text" id="location" name="location" value="{{ venue.location }}" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="capacity" class="form-label">Capacity</label>
+                <input type="text" id="capacity" name="capacity" value="{{ venue.capacity }}" class="form-control">
+            </div>
+        </div>
+        <br>
+        <div class="text-center">
+            <input type="submit" value="Update Venue" class="btn btn-warning">
+        </div>
+    </form>
+    </div>
+</body>
+</html>

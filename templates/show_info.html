@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>See show</title>
+  </head>
+  <body class="bg-dark d-flex justify-content-center align-items-center p-sm-5">
+    <div class="background-slideshow">
+        <div class="image" style="background-image: url('/static/ig.jpg');"></div>
+      </div>
+      <div class="container py-5 bg-secondary"style="background-image: url('/static/i1.jpg');">  
+        <h1 class="text-center text-muted">
+            <span class="badge bg-light p-4 text-warning">{{ show.name }}</span>
+        </h1>
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 col-sm-10 col-12">
+                <div class="card bg-light text-warning">
+                    <div class="card-header">
+                        <br><h3 class="card-title text-center">Show Information</h3>
+                    </div>
+                    <div class="card-body text-center bg-transparent">
+                        <h5 class="card-title"><strong>Description:</strong></h5>
+                        <p class="card-text"><strong>Tags:</strong> {{ show.tags }}</p>
+                        <p class="card-text"><strong>Time:</strong> {{ show.timing }}</p>
+                        <p class="card-text"><strong>Rating:</strong> {{ show.rating }}</p>
+                        <p class="card-text"><strong>Ticket Price:</strong> {{ show.ticket_price }}</p>
+                        <hr>
+                        <h5 class="card-title"><strong>Venue Information:</strong></h5>
+                        <p class="card-text"><strong>Venue:</strong> {{ show.venue.name }}</p>
+                        <p class="card-text"><strong>Address:</strong> {{ show.venue.place }},{{ show.venue.location }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-sm-center mt-5">
+            <a class="btn btn-sm btn-outline-warning" href="/admin_dashboard">Home</a>
+            <a class="mx-2 btn btn-sm btn-outline-warning" href="/">Log out</a>
+        </div>
+    </div>
+  </body>
+</html>
+
