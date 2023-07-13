@@ -12,7 +12,9 @@ app = Flask(__name__)
 app.secret_key = '12345'
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mydatabom.sqlite3"
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///manymanydata.sqlite3"
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("SQLALCHEMY_DATABASE_URI")
+# app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("SQLALCHEMY_DATABASE_URI")
+app.config["SQLALCHEMY_DATABASE_URI"] = f"sqlite:///{os.path.join(app.root_path, 'instance', 'manymanydata.sqlite3')}"
+
 
 db.init_app(app)
 app.app_context().push()
