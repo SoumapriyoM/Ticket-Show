@@ -1,3 +1,4 @@
+import os
 from flask import Flask,render_template,redirect,url_for,request,session,flash,abort
 from werkzeug.security import check_password_hash
 from sqlalchemy import func
@@ -10,7 +11,8 @@ from sqlalchemy.orm import joinedload
 app = Flask(__name__)
 app.secret_key = '12345'
 # app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///mydatabom.sqlite3"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///manymanydata.sqlite3"
+# app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///manymanydata.sqlite3"
+app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("SQLALCHEMY_DATABASE_URI")
 
 db.init_app(app)
 app.app_context().push()
